@@ -51,7 +51,7 @@ function App() {
   return (
     <div>
       <Description />
-      <Options onFeedback={updateFeedback} clearFeedback={clearFeedback} />
+      <Options totalFeedback={total} onFeedback={updateFeedback} clearFeedback={clearFeedback} />
       {total > 0 ? (
         <Feedback
           feedback={feedback}
