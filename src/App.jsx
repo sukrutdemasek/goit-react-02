@@ -6,17 +6,15 @@ import Options from "./components/Options/Options";
 import Notification from "./components/Notification";
 
 function App() {
-  
   const getInitialFeedback = () => {
     const storedFeedback = localStorage.getItem("feedback");
     return storedFeedback
-      ? JSON.parse(storedFeedback) 
-      : { good: 0, neutral: 0, bad: 0 }; 
+      ? JSON.parse(storedFeedback)
+      : { good: 0, neutral: 0, bad: 0 };
   };
 
   const [feedback, setFeedback] = useState(getInitialFeedback);
 
-  
   useEffect(() => {
     localStorage.setItem("feedback", JSON.stringify(feedback));
   }, [feedback]);
@@ -32,19 +30,22 @@ function App() {
   };
 
   const clearFeedback = () => {
-    setFeedback({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
-    localStorage.setItem(
-      "feedback",
-      JSON.stringify({
+   
+    if (feedback.good > 0 || feedback.neutral > 0 || feedback.bad > 0) {
+      setFeedback({
         good: 0,
         neutral: 0,
         bad: 0,
-      })
-    );
+      });
+      localStorage.setItem(
+        "feedback",
+        JSON.stringify({
+          good: 0,
+          neutral: 0,
+          bad: 0,
+        })
+      );
+    }
   };
 
   return (
