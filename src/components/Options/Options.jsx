@@ -1,5 +1,5 @@
 import "./Options.css";
-export default function Options({ onFeedback, clearFeedback }) {
+export default function Options({ totalFeedback, onFeedback, clearFeedback }) {
   return (
     <div className="options">
       <button className="feedbackButton" onClick={() => onFeedback("good")}>
@@ -11,9 +11,9 @@ export default function Options({ onFeedback, clearFeedback }) {
       <button className="feedbackButton" onClick={() => onFeedback("bad")}>
         Bad
       </button>
-      <button className="feedbackButton" onClick={() => clearFeedback()}>
+      {totalFeedback > 0 && <button className="feedbackButton" onClick={() => clearFeedback()}>
         Reset
-      </button>
+      </button>}
     </div>
   );
 }
